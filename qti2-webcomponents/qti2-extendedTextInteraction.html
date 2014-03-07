@@ -1,0 +1,74 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-extendedTextInteraction" attributes="class label base responseIdentifier maxStrings minStrings expectedLines format stringIdentifier expectedLength patternMask placeholderText">
+  <template>
+    <div id="container">
+    
+    </div>
+  </template>
+  <script>
+  Polymer('qti2-extendedTextInteraction', {
+	 class: null,
+	 label: null,
+	 base: 10, // This is stringInteraction::base, not flow::base (which we ignore)
+	 responseIdentifier: null,
+	 maxStrings: null,
+	 minStrings: 0,
+	 expectedLines: null,
+	 format: 'plain',
+	 stringIdentifier: null,
+	 expectedLength: null,
+	 patternMask: null,
+	 placeholderText: null,
+	 _pattern: null,
+
+	 ready: function() {
+		 var textBoxCount = 1;
+		 if (this.maxStrings != null) {
+			 textBoxCount = this.maxStrings;
+		 }
+		 for (var i = 0; i < textBoxCount; i++) {
+			 var el = document.createElement('textarea');
+			 if (this.placeholderText != null) {
+				 el.setAttribute('placeholder', this.placeholderText);
+			 }
+			 if (this.expectedLines != null) {
+				 el.setAttribute('rows', this.expectedLines);
+			 }
+			 el.addEventListener('change', this.textChanged.bind(this));
+			 // probably need to clone it in here...
+			 this.$.container.appendChild(el);
+		 }
+		 
+		 if (this.patternMask != null) {
+			 try {
+				 this._pattern = new RegExp(this.patternMask);
+			 } catch (e) {
+				 console.log("Invalid regular expression in patternMask");
+			 }
+		 }
+		 
+		 if (this.format != 'plain') {
+			 console.log("Only supported format is plain");
+		 }
+	 },
+	 textChanged: function(e) {
+		 var value = e.target.value;
+		 if (this.expectedLength != null) {
+		 	 if (value.length > this.expectedLength) {
+				 alert('Text longer than expected ' + this.expectedLength + ' characters.');
+			 }
+		 }
+
+         if (this.patternMask != null && this._pattern != null) {
+             if (!this._pattern.test(value)) {
+                 alert('Text does not match required pattern ' + this.patternMask);
+             }
+         }
+	 },
+	 qti2Submit: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>

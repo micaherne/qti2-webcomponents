@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-hottext" attributes="class label base identifier fixed templateIdentifier showHide">
+  <template>
+    <link rel="stylesheet" href="qti2-hottext.css">
+    <span id="container"><span id="checkbox"></span><content></content></span>
+  </template>
+  <script>
+  Polymer('qti2-hottext', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 identifier: null,
+	 fixed: false,
+	 templateIdentifier: null,
+	 showHide: 'show',
+	 _hottextInteraction: null,
+
+	 ready: function() {
+		 this._hottextInteraction = this.findContainingInteraction('qti2-hottextInteraction');
+
+		 // TODO: The showHide needs to work with the actual QTI variable
+		 if (this.showHide == 'show') {
+			 var checkbox = document.createElement('input');
+			 checkbox.setAttribute('type', 'checkbox');
+			 checkbox.addEventListener('change', this.optionChanged.bind(this));
+			 this.$.checkbox.appendChild(checkbox);
+			 this.$.container.classList.add('hottext');
+		 }
+	 },
+	 
+	 findContainingInteraction: function(name) {
+		 var parent = this.parentElement;
+		 while (parent != null) {
+			 if (parent.nodeName.toUpperCase() == name.toUpperCase()) {
+				 return parent;
+			 }
+			 parent = parent.parentElement;
+		 }
+	 },
+	 
+	 optionChanged: function(e) {
+		 console.log('optionChanged');
+		 this._hottextInteraction.choiceChanged(this);
+	 },
+	 
+	 isChecked: function() {
+		 // TODO: How do we get the checkbox object?
+		 return false;
+	 },
+
+	 qti2Submit: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>

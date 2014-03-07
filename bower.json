@@ -1,0 +1,18 @@
+{
+  "name": "qti2-webcomponents",
+  "version": "0.0.0",
+  "authors": [
+    "Michael Aherne <michael.aherne@strath.ac.uk>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.2.0"
+  }
+}

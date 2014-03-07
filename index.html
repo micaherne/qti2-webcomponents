@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 1. Load platform.js for polyfill support. -->
+    <script src="bower_components/platform/platform.js"></script>
+
+    <!-- 2. Use an HTML Import to bring in the element. -->
+    <link rel="import"
+          href="qti2-webcomponents/qti2-extendedTextInteraction.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-textEntryInteraction.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-hottextInteraction.html">
+  </head>
+  <body>
+    <qti2-extendedTextInteraction placeholderText="Something like this..." 
+        expectedLength="20" format="plain" patternMask="^\d.*" expectedLines="14" maxStrings="3"></qti2-extendedTextInteraction>
+    <qti2-textEntryInteraction expectedLength="4" responseIdentifier="BIM" placeholderText="4 digit number" patternMask="^\d{4}$"></qti2-textEntryInteraction>
+    <qti2-hottextInteraction responseIdentifier="RESPONSE" maxChoices="1">
+            <p>Sponsors of the Olympic Games <qti2-hottext identifier="A">who bought</qti2-hottext>
+                advertising time on United States television <qti2-hottext identifier="B">includes</qti2-hottext>
+                <qti2-hottext identifier="C">at least</qti2-hottext> a dozen international firms <qti2-hottext
+                    identifier="D">whose</qti2-hottext> names are familiar to American consumers.
+                    <qti2-hottext identifier="E">No error.</qti2-hottext>
+            </p>
+        </qti2-hottextInteraction>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="qti2-hottext.html">
+
+<polymer-element name="qti2-hottextInteraction" attributes="class label base responseIdentifier maxChoices minChoices">
+  <template>
+    <div id="container">
+        <content></content>
+    </div>
+  </template>
+  <script>
+  Polymer('qti2-hottextInteraction', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 responseIdentifier: null,
+	 maxChoices: 1,
+	 minChoices: 0,
+
+	 ready: function() {
+		
+	 },
+	 
+	 // Called by hottext when (un)checked
+	 choiceChanged: function(hottext) {
+		 var hottexts = this.querySelectorAll('qti2-hottext');
+		 for(var i = 0; i < hottexts.length; i++) {
+			 console.log(hottexts[i]);
+			 if(hottexts[i].isChecked()) {
+				 console.log("checked");
+			 }
+		 }
+	 },
+
+	 qti2Submit: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>
