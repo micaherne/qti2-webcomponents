@@ -40,13 +40,11 @@
 	 },
 	 
 	 optionChanged: function(e) {
-		 console.log('optionChanged');
 		 this._hottextInteraction.choiceChanged(this);
 	 },
 	 
 	 isChecked: function() {
-		 // TODO: How do we get the checkbox object?
-		 return false;
+		 return this.$.checkbox.querySelector('input').checked;
 	 },
 
 	 qti2Submit: function() {
