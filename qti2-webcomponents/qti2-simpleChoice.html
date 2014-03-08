@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-simpleChoice" attributes="class label base identifier fixed templateIdentifier showHide">
+  <template>
+    <div><input id="checkbox" type="checkbox" value="{{identifier}}"></input>{{innerHTML}}</div>
+  </template>
+  <script>
+  Polymer('qti2-simpleChoice', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 identifier: null,
+	 fixed: false,
+	 templateIdentifier: null,
+	 showHide: 'show',
+	 _choiceInteraction: null,
+
+	 ready: function() {
+		 this._choiceInteraction = this.findContainingInteraction('qti2-choiceInteraction');
+		 this.$.checkbox.addEventListener('change', this.optionChanged.bind(this));
+		 
+		 // TODO: The showHide needs to work with the actual QTI variable
+		 if (this.showHide == 'show') {
+			 // TODO: What??
+		 }
+	 },
+	 
+	 findContainingInteraction: function(name) {
+		 var parent = this.parentElement;
+		 while (parent != null) {
+			 if (parent.nodeName.toUpperCase() == name.toUpperCase()) {
+				 return parent;
+			 }
+			 parent = parent.parentElement;
+		 }
+	 },
+	 
+	 optionChanged: function(e) {
+         this._choiceInteraction.choiceChanged(this);
+     },
+     
+     isChecked: function() {
+         return this.$.checkbox.checked;
+     },
+	 
+	 qti2Submit: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>

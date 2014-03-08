@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-inlineChoice" attributes="class label base identifier fixed templateIdentifier showHide">
+  <template>
+    <option value="{{innerHTML}}">{{innerHTML}}</option>
+  </template>
+  <script>
+  Polymer('qti2-inlineChoice', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 identifier: null,
+	 fixed: false,
+	 templateIdentifier: null,
+	 showHide: 'show',
+	 _inlineChoiceInteraction: null,
+
+	 ready: function() {
+		 this._inlineChoiceInteraction = this.findContainingInteraction('qti2-inlineChoiceInteraction');
+
+		 // TODO: The showHide needs to work with the actual QTI variable
+		 if (this.showHide == 'show') {
+			 // TODO: What??
+		 }
+	 },
+	 
+	 findContainingInteraction: function(name) {
+		 var parent = this.parentElement;
+		 while (parent != null) {
+			 if (parent.nodeName.toUpperCase() == name.toUpperCase()) {
+				 return parent;
+			 }
+			 parent = parent.parentElement;
+		 }
+	 },
+	 
+	 qti2Submit: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>

@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="qti2-simpleChoice.html">
+
+<polymer-element name="qti2-choiceInteraction" attributes="class label base responseIdentifier shuffle maxChoices minChoices orientation">
+  <template>
+    <div id="container">
+        <content></content>
+    </div>
+  </template>
+  <script>
+  /* This is not at all good. We can't seem to use the select as a container for the
+   * <content>, so we need to create the options in code */
+  Polymer('qti2-choiceInteraction', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 responseIdentifier: null,
+	 shuffle: false,
+	 maxChoices: 1,
+	 minChoices: 0,
+	 orientation: null,
+
+	 ready: function() {
+		
+	 },
+	 
+	 // Called by simpleChoice when (un)checked
+     choiceChanged: function(simpleChoice) {
+         var simpleChoices = this.querySelectorAll('qti2-simpleChoice');
+         var checkedCount = 0;
+         for(var i = 0; i < simpleChoices.length; i++) {
+             if(simpleChoices[i].isChecked()) {
+                 checkedCount++;
+             }
+         }
+         
+         if (checkedCount > this.maxChoices) {
+             alert("More than allowed " + this.maxChoices + " chosen");
+         }
+     },
+
+	 qti2Submit: function() {
+		 // check the minChoices
+	 }
+  });
+  </script>
+</polymer-element>

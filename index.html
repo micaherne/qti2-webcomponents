@@ -6,13 +6,22 @@
 
     <!-- 2. Use an HTML Import to bring in the element. -->
     <link rel="import"
+          href="qti2-webcomponents/qti2-itemBody.html">
+    <link rel="import"
           href="qti2-webcomponents/qti2-extendedTextInteraction.html">
     <link rel="import"
           href="qti2-webcomponents/qti2-textEntryInteraction.html">
     <link rel="import"
           href="qti2-webcomponents/qti2-hottextInteraction.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-inlineChoiceInteraction.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-prompt.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-choiceInteraction.html">
   </head>
   <body>
+    <qti2-itemBody>
     <qti2-extendedTextInteraction placeholderText="Something like this..." 
         expectedLength="20" format="plain" patternMask="^\d.*" expectedLines="14" maxStrings="3"></qti2-extendedTextInteraction>
     <qti2-textEntryInteraction expectedLength="4" responseIdentifier="BIM" placeholderText="4 digit number" patternMask="^\d{4}$"></qti2-textEntryInteraction>
@@ -24,5 +33,28 @@
                     <qti2-hottext identifier="E">No error.</qti2-hottext>
             </p>
         </qti2-hottextInteraction>
+        
+        <blockquote>
+            <p>Now is the winter of our discontent<br/> Made glorious summer by this sun of
+                    <qti2-inlineChoiceInteraction responseIdentifier="RESPONSE" shuffle="true">
+                    <qti2-inlineChoice identifier="G">Gloucester</qti2-inlineChoice>
+                    <qti2-inlineChoice identifier="L">Lancaster</qti2-inlineChoice>
+                    <qti2-inlineChoice identifier="Y">York</qti2-inlineChoice>
+                </qti2-inlineChoiceInteraction>;<br/> And all the clouds that lour'd upon our house<br/>
+                In the deep bosom of the ocean buried.</p>
+        </blockquote>
+        
+        <p>Look at the text in the picture.</p>
+        <p>
+            <img src="images/sign.png" alt="NEVER LEAVE LUGGAGE UNATTENDED"/>
+        </p>
+        <qti2-choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+            <qti2-prompt>What does it say?</qti2-prompt>
+            <qti2-simpleChoice identifier="ChoiceA">You must stay with your luggage at all times.</qti2-simpleChoice>
+            <qti2-simpleChoice identifier="ChoiceB">Do not let someone else look after your luggage.</qti2-simpleChoice>
+            <qti2-simpleChoice identifier="ChoiceC">Remember your luggage when you leave.</qti2-simpleChoice>
+        </qti2-choiceInteraction>
+        
+        <qti2-itemBody>
   </body>
 </html>

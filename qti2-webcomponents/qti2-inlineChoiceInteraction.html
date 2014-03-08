@@ -1,0 +1,49 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="qti2-inlineChoice.html">
+
+<polymer-element name="qti2-inlineChoiceInteraction" attributes="class label base responseIdentifier shuffle required">
+  <template>
+    <select id="container">
+        <option value=""></option>
+    </select>
+  </template>
+  <script>
+  /* This is not at all good. We can't seem to use the select as a container for the
+   * <content>, so we need to create the options in code */
+  Polymer('qti2-inlineChoiceInteraction', {
+	 class: null,
+	 label: null,
+	 base: null,
+	 responseIdentifier: null,
+	 shuffle: false,
+	 required: false,
+
+	 ready: function() {
+		if (this.required) {
+			var blankOption = this.$.container.querySelector('option');
+			this.$.container.removeChild(blankOption);
+		}
+		var options = this.querySelectorAll('qti2-inlineChoice');
+		var optionElements = [];
+		for (var i = 0; i < options.length; i++) {
+			var option = document.createElement('option');
+			option.setAttribute('value', options[i].getAttribute('identifier'));
+			option.innerHTML = options[i].textContent;
+			optionElements.push(option);
+		}
+		
+		if (this.shuffle) {
+			optionElements = QTI2.shuffle(optionElements);
+		}
+		
+		for (var i = 0; i < optionElements.length; i++) {
+			  this.$.container.appendChild(optionElements[i]);
+		}
+	 },
+
+	 qti2Submit: function() {
+		 // check the minChoices
+	 }
+  });
+  </script>
+</polymer-element>
