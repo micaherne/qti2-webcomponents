@@ -23,7 +23,7 @@
 		 if (this.showHide == 'show') {
 			 var checkbox = document.createElement('input');
 			 checkbox.setAttribute('type', 'checkbox');
-			 checkbox.addEventListener('change', this.optionChanged.bind(this));
+			 checkbox.addEventListener('change', this.valueChanged.bind(this));
 			 this.$.checkbox.appendChild(checkbox);
 			 this.$.container.classList.add('hottext');
 		 }
@@ -39,15 +39,15 @@
 		 }
 	 },
 	 
-	 optionChanged: function(e) {
-		 this._hottextInteraction.choiceChanged(this);
+	 valueChanged: function(e) {
+		 this._hottextInteraction.valueChanged(this);
 	 },
 	 
 	 isChecked: function() {
 		 return this.$.checkbox.querySelector('input').checked;
 	 },
 
-	 qti2Submit: function() {
+	 finalise: function() {
 		 // check the minStrings
 	 }
   });

@@ -26,7 +26,7 @@
 		 if (this.expectedLines != null) {
 			 el.setAttribute('rows', this.expectedLines);
 		 }
-		 el.addEventListener('change', this.textChanged.bind(this));
+		 el.addEventListener('change', this.valueChanged.bind(this));
 		 // probably need to clone it in here...
 		 this.$.container.appendChild(el);
 
@@ -39,7 +39,8 @@
 			 }
 		 }
 	 },
-	 textChanged: function(e) {
+
+	 valueChanged: function(e) {
 		 var value = e.target.value;
 		 if (this.expectedLength != null) {
 		 	 if (value.length > this.expectedLength) {
@@ -53,7 +54,8 @@
              }
          }
 	 },
-	 qti2Submit: function() {
+
+	 finalise: function() {
 		 // check the minStrings
 	 }
   });

@@ -17,7 +17,7 @@
 
 	 ready: function() {
 		 this._choiceInteraction = this.findContainingInteraction('qti2-choiceInteraction');
-		 this.$.checkbox.addEventListener('change', this.optionChanged.bind(this));
+		 this.$.checkbox.addEventListener('change', this.valueChanged.bind(this));
 		 
 		 // TODO: The showHide needs to work with the actual QTI variable
 		 if (this.showHide == 'show') {
@@ -35,15 +35,15 @@
 		 }
 	 },
 	 
-	 optionChanged: function(e) {
-         this._choiceInteraction.choiceChanged(this);
+	 valueChanged: function(e) {
+         this._choiceInteraction.valueChanged(this);
      },
      
      isChecked: function() {
          return this.$.checkbox.checked;
      },
 	 
-	 qti2Submit: function() {
+	 finalise: function() {
 		 // check the minStrings
 	 }
   });

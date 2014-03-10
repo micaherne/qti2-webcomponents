@@ -1,6 +1,26 @@
 Use polymer inheritance to make sensible base components: interaction, stringInteraction, templateElement, feedbackElement, choice
 Change existing components to extend from base components
+
+* Above 2 may be better once we have it working, as it complicates encapsulation
+
 Tighten up controller and binding stuff
 Do something about displaying validation. Maybe have a standard element to show interaction-specific validation? Would be cool to highlight error.
 Standardise binding of variables. Introduce variable object (to do things like convert between array-of-one-value and single value etc.)
 Enable reset by cloning initial state in controller.
+
+
+
+
+All interaction elements should support an interface:
+
+valueChanged: bound to actual underlying elements. Calls validate and updateResponeVariable if OK. 
+validate: checks that the value is allowed under the interaction's constraints. It would be good
+    if this were able just to check the element throwing the underlying event, but it may be more
+    sensible if we can check the whole component's value instead. This would rely on good display
+    of invalid values (e.g. highlighting which of a number of textareas in an extendedTextInteraction
+    was invalid.
+updateResponseVariable: updates the actual response variable (bound by the controller) from the 
+    current state of the interaction
+finalise: called when the user "finalises" their response (i.e. moves on to the next item).
+    This is useful for further validation that is not appropriate to do "live", such as 
+    minChoices in the hottextInteraction

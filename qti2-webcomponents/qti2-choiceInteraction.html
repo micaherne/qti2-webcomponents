@@ -25,7 +25,7 @@
 	 },
 	 
 	 // Called by simpleChoice when (un)checked
-     choiceChanged: function(simpleChoice) {
+     valueChanged: function(simpleChoice) {
          var simpleChoices = this.querySelectorAll('qti2-simpleChoice');
          var checkedCount = 0;
          for(var i = 0; i < simpleChoices.length; i++) {
@@ -39,7 +39,7 @@
          }
      },
 
-	 qti2Submit: function() {
+	 finalise: function() {
 		 // check the minChoices
 	 }
   });

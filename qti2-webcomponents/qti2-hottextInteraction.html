@@ -21,7 +21,7 @@
 	 },
 	 
 	 // Called by hottext when (un)checked
-	 choiceChanged: function(hottext) {
+	 valueChanged: function(hottext) {
 		 var hottexts = this.querySelectorAll('qti2-hottext');
 		 var checked = [];
 		 for(var i = 0; i < hottexts.length; i++) {
@@ -35,7 +35,7 @@
 		 }
 	 },
 
-	 qti2Submit: function() {
+	 finalise: function() {
 		 // check the minChoices
 	 }
   });
