@@ -18,8 +18,13 @@
 		bindInteractions: function() {
 			// join just to allow us to split them across lines
 			var interactions = document.querySelectorAll(['qti2-choiceInteraction', 
-			    'qti2-extendedTextInteraction', 'qti2-hottextInteraction',
-			    'qti2-inlineChoiceInteraction', 'qti2-textEntryInteraction'].join(', '));
+			    'qti2-orderInteraction', 'qti2-associateInteraction', 'qti2-matchInteraction',
+			    'qti2-gapMatchInteraction', 'qti2-inlineChoiceInteraction', 'qti2-textEntryInteraction', 
+			    'qti2-extendedTextInteraction', 'qti2-hottextInteraction', 'qti2-graphicInteraction',
+			    'qti2-hotspotInteraction', 'qti2-selectPointInteraction', 'qti2-graphicOrderInteraction',
+			    'qti2-graphicAssociateInteraction', 'qti2-graphicGapMatchInteraction', 'qti2-positionObjectInteraction',
+			    'qti2-sliderInteraction', 'qti2-mediaInteraction', 'qti2-drawingInteraction', 'qti2-uploadInteraction',
+			    'qti2-customInteraction'].join(', '));
 			console.log(interactions);
 			for (var i in interactions) {
 				var interaction = interactions[i];
