@@ -18,7 +18,7 @@
     <link rel="import"
           href="qti2-webcomponents/qti2-prompt.html">
     <link rel="import"
-          href="qti2-webcomponents/qti2-inlineFeedback.html">
+          href="qti2-webcomponents/qti2-feedbackInline.html">
     <link rel="import"
           href="qti2-webcomponents/qti2-choiceInteraction.html">
     <link rel="import"
@@ -61,14 +61,16 @@
                     cardinality: "single",
                     baseType: "identifier",
                     value: "bim"
+                },
+                "FEEDBACK": {
+                	identifier: "FEEDBACK",
+                	cardinality: "single",
+                	baseType: "identifier",
+                	value: "MGH001C"
                 }
             }
         };
-    document.addEventListener('polymer-ready', function() {
-    	
-    	
-    	document.querySelector('qti2-inlineFeedback').qtiBind(qtiVariables);
-    });
+
     </script>
     
     <style>
@@ -112,6 +114,26 @@
         </qti2-choiceInteraction>
         
         <qti2-inlineFeedback outcomeIdentifier="TEST" showHide="show" identifier="bim">Hello from inlineFeedback</qti2-inlineFeedback>
+        
+        <qti2-choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+            <qti2-prompt>Who is the President of Mexico?</qti2-prompt>
+            <qti2-simpleChoice identifier="MGH001A"> George W Bush <qti2-feedbackInline
+                    outcomeIdentifier="FEEDBACK" identifier="MGH001A" showHide="show">No, he is the
+                    President of the USA.</qti2-feedbackInline>
+            </qti2-simpleChoice>
+            <qti2-simpleChoice identifier="MGH001B"> Tony Blair <qti2-feedbackInline
+                    outcomeIdentifier="FEEDBACK" identifier="MGH001B" showHide="show">No, he is the
+                    Prime Minister of England.</qti2-feedbackInline>
+            </qti2-simpleChoice>
+            <qti2-simpleChoice identifier="MGH001C"> Vicente Fox <qti2-feedbackInline
+                    outcomeIdentifier="FEEDBACK" identifier="MGH001C" showHide="show"
+                >Yes.</qti2-feedbackInline>
+            </qti2-simpleChoice>
+            <qti2-simpleChoice identifier="MGH001D"> Ariel Sharon <qti2-feedbackInline
+                    outcomeIdentifier="FEEDBACK" identifier="MGH001D" showHide="show">No, he is the
+                    Prime Minister of Israel.</qti2-feedbackInline>
+            </qti2-simpleChoice>
+        </qti2-choiceInteraction>
         
         <qti2-itemBody>
   </body>

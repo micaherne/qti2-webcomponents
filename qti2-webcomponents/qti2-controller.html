@@ -24,18 +24,31 @@
 			    'qti2-hotspotInteraction', 'qti2-selectPointInteraction', 'qti2-graphicOrderInteraction',
 			    'qti2-graphicAssociateInteraction', 'qti2-graphicGapMatchInteraction', 'qti2-positionObjectInteraction',
 			    'qti2-sliderInteraction', 'qti2-mediaInteraction', 'qti2-drawingInteraction', 'qti2-uploadInteraction',
-			    'qti2-customInteraction'].join(', '));
-			console.log(interactions);
+			    'qti2-customInteraction',
+			    
+			    'qti2-feedbackInline'
+			    ].join(', '));
+
 			for (var i in interactions) {
 				var interaction = interactions[i];
 				if (!typeof interaction == 'object') {
 					return;
 				}
+				
+				// Response variables
 				var responseIdentifier = interaction.responseIdentifier;
 				if (responseIdentifier in this._variable.response) {
 					interaction._responseVariable = this._variable.response[responseIdentifier];
 				} else {
 					console.log("Variable not found " + responseIdentifier);
+				}
+				
+				// Outcome variables
+				var outcomeIdentifier = interaction.outcomeIdentifier;
+				if (typeof outcomeIdentifier != 'undefined') {
+					if (outcomeIdentifier in this._variable.outcome) {
+						interaction._outcomeVariable = this._variable.outcome[outcomeIdentifier];
+					}
 				}
 			}
 		}

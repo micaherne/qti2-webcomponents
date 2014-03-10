@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-feedbackInline" attributes="outcomeIdentifier showHide identifier">
+  <template>
+    <span id="container"><content></content></span>
+  </template>
+  <script>
+  Polymer('qti2-feedbackInline', {
+	 outcomeIdentifier: null,
+	 showHide: 'show',
+	 identifier: null,
+	 _choiceInteraction: null,
+	 _content: null,
+
+	 ready: function() {
+		 this._content = this.$.container.innerHTML;
+		 this.$.container.innerHTML = '';
+	 },
+	 
+	 qtiBind: function(qtiVariables) {
+		 if (typeof qtiVariables.outcome[this.outcomeIdentifier] != 'undefined') {
+			 if (qtiVariables.outcome[this.outcomeIdentifier].value == this.identifier) {
+				 if (this.showHide == 'show') {
+					 this.$.container.innerHTML = this._content;
+				 } else {
+					 this.$.container.innerHTML = '';
+				 }
+			 } else {
+				 if (this.showHide == 'show') {
+                     this.$.container.innerHTML = '';
+                 } else {
+                     this.$.container.innerHTML = this._content;
+                 }
+			 }
+		 }
+	 },
+	 
+	 valueChanged: function(e) {
+         
+     },
+
+	 finalise: function() {
+		 // check the minStrings
+	 }
+  });
+  </script>
+</polymer-element>
