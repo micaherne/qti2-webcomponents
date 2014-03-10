@@ -18,14 +18,70 @@
     <link rel="import"
           href="qti2-webcomponents/qti2-prompt.html">
     <link rel="import"
+          href="qti2-webcomponents/qti2-inlineFeedback.html">
+    <link rel="import"
           href="qti2-webcomponents/qti2-choiceInteraction.html">
+    <link rel="import"
+          href="qti2-webcomponents/qti2-controller.html"> 
+    <script>
+    var qtiVariables = {
+    		response: {
+    			"RESPONSE1": {
+                    identifier: "RESPONSE1",
+                    cardinality: "single",
+                    baseType: "identifier"
+                },
+                "RESPONSE2": {
+                    identifier: "RESPONSE2",
+                    cardinality: "single",
+                    baseType: "identifier"
+                },
+                "RESPONSE3": {
+                    identifier: "RESPONSE3",
+                    cardinality: "single",
+                    baseType: "identifier"
+                },
+                "numAttempts": {
+                    identifier: "numAttempts",
+                    cardinality: "single",
+                    baseType: "integer",
+                    value: 3
+                },
+                "duration": {
+                    identifier: "duration",
+                    cardinality: "single",
+                    baseType: "float",
+                    value: 0
+                },
+                
+            },
+            outcome: {
+                "TEST": {
+                    identifier: "TEST",
+                    cardinality: "single",
+                    baseType: "identifier",
+                    value: "bim"
+                }
+            }
+        };
+    document.addEventListener('polymer-ready', function() {
+    	
+    	
+    	document.querySelector('qti2-inlineFeedback').qtiBind(qtiVariables);
+    });
+    </script>
+    
+    <style>
+    
+    </style>
   </head>
   <body>
+    <qti2-controller sessionVariableName="qtiVariables"></qti2-controller>
     <qti2-itemBody>
     <qti2-extendedTextInteraction placeholderText="Something like this..." 
         expectedLength="20" format="plain" patternMask="^\d.*" expectedLines="14" maxStrings="3"></qti2-extendedTextInteraction>
     <qti2-textEntryInteraction expectedLength="4" responseIdentifier="BIM" placeholderText="4 digit number" patternMask="^\d{4}$"></qti2-textEntryInteraction>
-    <qti2-hottextInteraction responseIdentifier="RESPONSE" maxChoices="1">
+    <qti2-hottextInteraction responseIdentifier="RESPONSE1" maxChoices="1">
             <p>Sponsors of the Olympic Games <qti2-hottext identifier="A">who bought</qti2-hottext>
                 advertising time on United States television <qti2-hottext identifier="B">includes</qti2-hottext>
                 <qti2-hottext identifier="C">at least</qti2-hottext> a dozen international firms <qti2-hottext
@@ -36,7 +92,7 @@
         
         <blockquote>
             <p>Now is the winter of our discontent<br/> Made glorious summer by this sun of
-                    <qti2-inlineChoiceInteraction responseIdentifier="RESPONSE" shuffle="true">
+                    <qti2-inlineChoiceInteraction responseIdentifier="RESPONSE2" shuffle="true">
                     <qti2-inlineChoice identifier="G">Gloucester</qti2-inlineChoice>
                     <qti2-inlineChoice identifier="L">Lancaster</qti2-inlineChoice>
                     <qti2-inlineChoice identifier="Y">York</qti2-inlineChoice>
@@ -48,12 +104,14 @@
         <p>
             <img src="images/sign.png" alt="NEVER LEAVE LUGGAGE UNATTENDED"/>
         </p>
-        <qti2-choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+        <qti2-choiceInteraction responseIdentifier="RESPONSE3" shuffle="false" maxChoices="1">
             <qti2-prompt>What does it say?</qti2-prompt>
             <qti2-simpleChoice identifier="ChoiceA">You must stay with your luggage at all times.</qti2-simpleChoice>
             <qti2-simpleChoice identifier="ChoiceB">Do not let someone else look after your luggage.</qti2-simpleChoice>
             <qti2-simpleChoice identifier="ChoiceC">Remember your luggage when you leave.</qti2-simpleChoice>
         </qti2-choiceInteraction>
+        
+        <qti2-inlineFeedback outcomeIdentifier="TEST" showHide="show" identifier="bim">Hello from inlineFeedback</qti2-inlineFeedback>
         
         <qti2-itemBody>
   </body>

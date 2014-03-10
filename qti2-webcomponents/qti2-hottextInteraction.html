@@ -23,14 +23,14 @@
 	 // Called by hottext when (un)checked
 	 choiceChanged: function(hottext) {
 		 var hottexts = this.querySelectorAll('qti2-hottext');
-		 var checkedCount = 0;
+		 var checked = [];
 		 for(var i = 0; i < hottexts.length; i++) {
 			 if(hottexts[i].isChecked()) {
-				 checkedCount++;
+				 checked.push(hottexts[i].identifier);
 			 }
 		 }
 		 
-		 if (checkedCount > this.maxChoices) {
+		 if (checked.length > this.maxChoices) {
 			 alert("More than allowed " + this.maxChoices + " chosen");
 		 }
 	 },

@@ -1,0 +1,40 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="qti2-controller" attributes="mode sessionVariableName">
+
+<template></template> 
+
+<script>
+	Polymer('qti2-controller', {
+		mode: 'js', // or 'ws' for web services
+		sessionVariableName: null,
+		_variable: null,
+
+		ready : function() {
+			this._variable = window[this.sessionVariableName]; // TODO: this sucks
+			document.addEventListener('polymer-ready', this.bindInteractions.bind(this));
+		},
+		
+		bindInteractions: function() {
+			// join just to allow us to split them across lines
+			var interactions = document.querySelectorAll(['qti2-choiceInteraction', 
+			    'qti2-extendedTextInteraction', 'qti2-hottextInteraction',
+			    'qti2-inlineChoiceInteraction', 'qti2-textEntryInteraction'].join(', '));
+			console.log(interactions);
+			for (var i in interactions) {
+				var interaction = interactions[i];
+				if (!typeof interaction == 'object') {
+					return;
+				}
+				var responseIdentifier = interaction.responseIdentifier;
+				if (responseIdentifier in this._variable.response) {
+					interaction._responseVariable = this._variable.response[responseIdentifier];
+				} else {
+					console.log("Variable not found " + responseIdentifier);
+				}
+			}
+		}
+	});
+</script> 
+
+</polymer-element>
