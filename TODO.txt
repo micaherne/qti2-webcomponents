@@ -1,0 +1,6 @@
+Use polymer inheritance to make sensible base components: interaction, stringInteraction, templateElement, feedbackElement, choice
+Change existing components to extend from base components
+Tighten up controller and binding stuff
+Do something about displaying validation. Maybe have a standard element to show interaction-specific validation? Would be cool to highlight error.
+Standardise binding of variables. Introduce variable object (to do things like convert between array-of-one-value and single value etc.)
+Enable reset by cloning initial state in controller.
