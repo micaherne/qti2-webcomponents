@@ -41,6 +41,16 @@
                     cardinality: "single",
                     baseType: "identifier"
                 },
+                "BIM": {
+                    identifier: "BIM",
+                    cardinality: "single",
+                    baseType: "string"
+                },
+                "EXTTEXT": {
+                    identifier: "EXTTEXT",
+                    cardinality: "multiple",
+                    baseType: "string"
+                },
                 "numAttempts": {
                     identifier: "numAttempts",
                     cardinality: "single",
@@ -70,9 +80,7 @@
                 }
             }
         };
-<<<<<<< Updated upstream
 
-=======
     document.addEventListener('polymer-ready', function() {
     	document.querySelector('#showVars').addEventListener('click', function(e) {
     		e.preventDefault();
@@ -83,7 +91,7 @@
             console.log(qtiVariables);
         });
     });
->>>>>>> Stashed changes
+
     </script>
     
     <style>
@@ -94,7 +102,7 @@
     <qti2-controller sessionVariableName="qtiVariables"></qti2-controller>
     <qti2-itemBody>
     <qti2-extendedTextInteraction placeholderText="Something like this..." 
-        expectedLength="20" format="plain" patternMask="^\d.*" expectedLines="14" maxStrings="3"></qti2-extendedTextInteraction>
+        expectedLength="20" format="plain" patternMask="^\d.*" expectedLines="14" maxStrings="3" responseIdentifier="EXTTEXT"></qti2-extendedTextInteraction>
     <qti2-textEntryInteraction expectedLength="4" responseIdentifier="BIM" placeholderText="4 digit number" patternMask="^\d{4}$"></qti2-textEntryInteraction>
     <qti2-hottextInteraction responseIdentifier="RESPONSE1" maxChoices="1">
             <p>Sponsors of the Olympic Games <qti2-hottext identifier="A">who bought</qti2-hottext>

@@ -39,6 +39,19 @@
 		for (var i = 0; i < optionElements.length; i++) {
 			  this.$.container.appendChild(optionElements[i]);
 		}
+		
+		this.$.container.addEventListener('change', this.valueChanged.bind(this));
+	 },
+	 
+	 valueChanged: function(e) {
+		 // No validation here because it's a select box
+		 this.updateResponseVariable();
+	 },
+	 
+	 updateResponseVariable: function() {
+		  // TODO: What do we do if the user selects the blank option?
+		  var selectedOption = this.$.container.querySelector('option:checked');
+		  this._variable.value = [selectedOption.value];
 	 },
 
 	 finalise: function() {

@@ -36,7 +36,21 @@
          
          if (checkedCount > this.maxChoices) {
              alert("More than allowed " + this.maxChoices + " chosen");
+             return;
          }
+         
+         this.updateResponseVariable();
+     },
+     
+     updateResponseVariable: function() {
+    	 var value = [];
+         var simpleChoices = this.querySelectorAll('qti2-simpleChoice');
+         for(var i = 0; i < simpleChoices.length; i++) {
+             if(simpleChoices[i].isChecked()) {
+            	    value.push(simpleChoices[i].identifier);
+             }
+         }
+         this._variable.value = value;
      },
 
 	 finalise: function() {

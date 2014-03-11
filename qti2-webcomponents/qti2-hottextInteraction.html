@@ -32,7 +32,22 @@
 		 
 		 if (checked.length > this.maxChoices) {
 			 alert("More than allowed " + this.maxChoices + " chosen");
+			 return;
 		 }
+		 
+		// Otherwise, validation is OK and we update the variable
+         this.updateResponseVariable();
+	 },
+	 
+	 updateResponseVariable: function() {
+		 var value = [];
+         var simpleChoices = this.querySelectorAll('qti2-hottext');
+         for(var i = 0; i < simpleChoices.length; i++) {
+             if(simpleChoices[i].isChecked()) {
+                    value.push(simpleChoices[i].identifier);
+             }
+         }
+         this._variable.value = value; 
 	 },
 
 	 finalise: function() {

@@ -8,18 +8,7 @@ Do something about displaying validation. Maybe have a standard element to show 
 Standardise binding of variables. Introduce variable object (to do things like convert between array-of-one-value and single value etc.)
 Enable reset by cloning initial state in controller.
 
-<<<<<<< Updated upstream
-
-
-
 All interaction elements should support an interface:
-
-valueChanged: bound to actual underlying elements. Calls validate and updateResponeVariable if OK. 
-=======
-Interface
----------
-
-All interactions should have a shared interface:
 
 valueChanged: bound to actual underlying elements, and called when any value changes. Calls validate
     and updateResponseVariable if OK.
@@ -34,6 +23,11 @@ finalise: called when the user "finalises" their response (i.e. moves on to the 
     This is useful for further validation that is not appropriate to do "live", such as
     minChoices in the hottextInteraction
     
+Maybe also:
+
+defaultVariable: where there is no qti2-controller component managing the variables, this
+    would just supply a dummy variable for testing?????
+    
 Interactions and any other components that need QTI variables bound to them should also
 implement the following:
 
@@ -44,7 +38,9 @@ bindVariable(qtiVariable): (optional) if this function exists, the controller wi
 If these aren't implemented, the controller looks for a responseIdentifier, outcomeIdentifier or 
 templateIdentifier attribute on the component and simply sets the _variable property
 of the component to the variable. (Obviously, this breaks encapsulation too, so we might
-want to insist on bindVariable())
+want to insist on bindVariable()). [Update: just realised that we need to either require this
+function or raise a "qti2-variablebound" event on the interaction otherwise we won't be able 
+to set the default value]
     
 Random info
 -----------
@@ -59,3 +55,15 @@ I have checked the variable attributes and:
     choice and its descendents: associableChoice, hotspotChoice, hottext, inlineChoice, simpleChoice
     templateElement and its descendents: templateInline, templateBlock
     (and templateDefault in test structure which we couldn't care less about at the moment)
+    
+Variables
+---------
+
+The value of variables is always represented as an array, even if the type is single (where
+it has a single-valued array)
+
+Sequence
+--------
+
+# Get all existing components supporting valueChanged and updateResponseVariable. Make sure the 
+    valueChanged function calls updateResponseVariable

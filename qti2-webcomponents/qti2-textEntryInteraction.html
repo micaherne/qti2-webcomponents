@@ -45,14 +45,25 @@
 		 if (this.expectedLength != null) {
 		 	 if (value.length > this.expectedLength) {
 				 alert('Text longer than expected ' + this.expectedLength + ' characters.');
+				 return;
 			 }
 		 }
 
          if (this.patternMask != null && this._pattern != null) {
              if (!this._pattern.test(value)) {
                  alert('Text does not match required pattern ' + this.patternMask);
+                 return;
              }
          }
+         
+         // Otherwise, validation is OK and we update the variable
+         this.updateResponseVariable();
+	 },
+
+	 updateResponseVariable: function() {
+		 // TODO: This is just a simplistic "set the value to the string the user entered" implementation
+		var textBox = this.$.container.querySelector('input');
+		this._variable.value = [textBox.value];
 	 },
 
 	 finalise: function() {
