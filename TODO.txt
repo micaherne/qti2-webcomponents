@@ -8,19 +8,54 @@ Do something about displaying validation. Maybe have a standard element to show 
 Standardise binding of variables. Introduce variable object (to do things like convert between array-of-one-value and single value etc.)
 Enable reset by cloning initial state in controller.
 
+<<<<<<< Updated upstream
 
 
 
 All interaction elements should support an interface:
 
 valueChanged: bound to actual underlying elements. Calls validate and updateResponeVariable if OK. 
+=======
+Interface
+---------
+
+All interactions should have a shared interface:
+
+valueChanged: bound to actual underlying elements, and called when any value changes. Calls validate
+    and updateResponseVariable if OK.
 validate: checks that the value is allowed under the interaction's constraints. It would be good
     if this were able just to check the element throwing the underlying event, but it may be more
     sensible if we can check the whole component's value instead. This would rely on good display
     of invalid values (e.g. highlighting which of a number of textareas in an extendedTextInteraction
     was invalid.
-updateResponseVariable: updates the actual response variable (bound by the controller) from the 
+updateResponseVariable: updates the actual response variable (bound by the controller) from the
     current state of the interaction
 finalise: called when the user "finalises" their response (i.e. moves on to the next item).
-    This is useful for further validation that is not appropriate to do "live", such as 
+    This is useful for further validation that is not appropriate to do "live", such as
     minChoices in the hottextInteraction
+    
+Interactions and any other components that need QTI variables bound to them should also
+implement the following:
+
+boundVariable: property containing an array of [variable type, variable name]
+bindVariable(qtiVariable): (optional) if this function exists, the controller will call it
+    when binding a QTI variable to the component. 
+    
+If these aren't implemented, the controller looks for a responseIdentifier, outcomeIdentifier or 
+templateIdentifier attribute on the component and simply sets the _variable property
+of the component to the variable. (Obviously, this breaks encapsulation too, so we might
+want to insist on bindVariable())
+    
+Random info
+-----------
+
+I have checked the variable attributes and:
+
+* responseIdentifier is only used on interactions
+* outcomeIdentifier is only used on feedbackInline, feedbackBlock, modalFeedback and testFeedback
+    (which is out of scope at the moment). It is also used in outcomes processing but we are not
+    interested in that.
+* templateIdentifier is used on:
+    choice and its descendents: associableChoice, hotspotChoice, hottext, inlineChoice, simpleChoice
+    templateElement and its descendents: templateInline, templateBlock
+    (and templateDefault in test structure which we couldn't care less about at the moment)

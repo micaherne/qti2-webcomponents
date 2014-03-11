@@ -23,7 +23,7 @@
 		 if (this.showHide == 'show') {
 			 var checkbox = document.createElement('input');
 			 checkbox.setAttribute('type', 'checkbox');
-			 checkbox.addEventListener('change', this.valueChanged.bind(this));
+			 checkbox.addEventListener('change', this._hottextInteraction.valueChanged.bind(this._hottextInteraction));
 			 this.$.checkbox.appendChild(checkbox);
 			 this.$.container.classList.add('hottext');
 		 }
@@ -38,11 +38,12 @@
 			 parent = parent.parentElement;
 		 }
 	 },
-	 
+
 	 valueChanged: function(e) {
 		 this._hottextInteraction.valueChanged(this);
 	 },
 	 
+
 	 isChecked: function() {
 		 return this.$.checkbox.querySelector('input').checked;
 	 },

@@ -12,10 +12,10 @@
 
 		ready : function() {
 			this._variable = window[this.sessionVariableName]; // TODO: this sucks
-			document.addEventListener('polymer-ready', this.bindInteractions.bind(this));
+			document.addEventListener('polymer-ready', this.bindVariables.bind(this));
 		},
 		
-		bindInteractions: function() {
+		bindVariables: function() {
 			// join just to allow us to split them across lines
 			var interactions = document.querySelectorAll(['qti2-choiceInteraction', 
 			    'qti2-orderInteraction', 'qti2-associateInteraction', 'qti2-matchInteraction',

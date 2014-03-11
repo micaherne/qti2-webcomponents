@@ -70,7 +70,20 @@
                 }
             }
         };
+<<<<<<< Updated upstream
 
+=======
+    document.addEventListener('polymer-ready', function() {
+    	document.querySelector('#showVars').addEventListener('click', function(e) {
+    		e.preventDefault();
+    		console.log(qtiVariables);
+    	});
+    	document.querySelector('#fakeSubmission').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log(qtiVariables);
+        });
+    });
+>>>>>>> Stashed changes
     </script>
     
     <style>
@@ -136,5 +149,8 @@
         </qti2-choiceInteraction>
         
         <qti2-itemBody>
+        
+        <button id="fakeSubmission">Fake submission</button>
+        <button id="showVars">Show variables</button>
   </body>
 </html>
