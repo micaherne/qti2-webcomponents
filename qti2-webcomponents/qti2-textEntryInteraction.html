@@ -65,6 +65,13 @@
 		var textBox = this.$.container.querySelector('input');
 		this._variable.value = [textBox.value];
 	 },
+	 
+	 setComponentState: function() {
+		 if (typeof this._variable.value != 'undefined') {
+			  var textBox = this.$.container.querySelector('input');
+			  textBox.value = this._variable.value[0];
+		 }
+	 },
 
 	 finalise: function() {
 		 // check the minStrings
