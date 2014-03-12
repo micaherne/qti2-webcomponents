@@ -17,31 +17,21 @@
 		 this.$.container.innerHTML = '';
 	 },
 	 
-	 qtiBind: function(qtiVariables) {
-		 if (typeof qtiVariables.outcome[this.outcomeIdentifier] != 'undefined') {
-			 if (qtiVariables.outcome[this.outcomeIdentifier].value == this.identifier) {
-				 if (this.showHide == 'show') {
-					 this.$.container.innerHTML = this._content;
-				 } else {
-					 this.$.container.innerHTML = '';
-				 }
-			 } else {
-				 if (this.showHide == 'show') {
-                     this.$.container.innerHTML = '';
-                 } else {
-                     this.$.container.innerHTML = this._content;
-                 }
-			 }
-		 }
-	 },
-	 
-	 valueChanged: function(e) {
-         
-     },
-
-	 finalise: function() {
-		 // check the minStrings
-	 }
+	 setComponentState: function() {
+		 if (this._variable.value == this.identifier) {
+             if (this.showHide == 'show') {
+                 this.$.container.innerHTML = this._content;
+             } else {
+                 this.$.container.innerHTML = '';
+             }
+         } else {
+             if (this.showHide == 'show') {
+                 this.$.container.innerHTML = '';
+             } else {
+                 this.$.container.innerHTML = this._content;
+             }
+         }
+     }
   });
   </script>
 </polymer-element>

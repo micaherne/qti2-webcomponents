@@ -55,6 +55,7 @@
 						if (variableName == null || !(variableName in this._variable[variableType])) {
 							return;
 						}
+
 						component._variable = this._variable[variableType][variableName];
 						
 						// Update the component state to reflect the value / type of the variable

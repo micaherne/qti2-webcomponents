@@ -2,7 +2,7 @@
 
 <polymer-element name="qti2-simpleChoice" attributes="class label base identifier fixed templateIdentifier showHide">
   <template>
-    <div><input id="checkbox" type="checkbox" value="{{identifier}}"></input>{{innerHTML}}</div>
+    <div><input id="checkbox" type="checkbox" value="{{identifier}}"></input><content></content></div>
   </template>
   <script>
   Polymer('qti2-simpleChoice', {
