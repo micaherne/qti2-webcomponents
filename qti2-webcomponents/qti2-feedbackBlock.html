@@ -1,11 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="qti2-feedbackBlock" attributes="outcomeIdentifier showHide identifier">
+<polymer-element name="qti2-feedbackInline" attributes="outcomeIdentifier showHide identifier">
   <template>
-    <div id="container"><content></content></div>
+    <span id="container"><content></content></span>
   </template>
   <script>
-  Polymer('qti2-feedbackBlock', {
+  Polymer('qti2-feedbackInline', {
 	 outcomeIdentifier: null,
 	 showHide: 'show',
 	 identifier: null,
