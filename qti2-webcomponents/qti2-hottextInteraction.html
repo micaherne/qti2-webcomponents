@@ -41,13 +41,26 @@
 	 
 	 updateResponseVariable: function() {
 		 var value = [];
-         var simpleChoices = this.querySelectorAll('qti2-hottext');
-         for(var i = 0; i < simpleChoices.length; i++) {
-             if(simpleChoices[i].isChecked()) {
-                    value.push(simpleChoices[i].identifier);
+         var hottexts = this.querySelectorAll('qti2-hottext');
+         for(var i = 0; i < hottexts.length; i++) {
+             if(hottexts[i].isChecked()) {
+                    value.push(hottexts[i].identifier);
              }
          }
          this._variable.value = value; 
+	 },
+	 
+	 setComponentState: function() {
+         if (typeof this._variable.value != 'undefined') {
+        	 var hottexts = this.querySelectorAll('qti2-hottext');
+             for (var i = 0; i < hottexts.length; i++) {
+            	 if (this._variable.value.indexOf(hottexts[i].identifier) > -1 ) {
+            		 hottexts[i].check();
+                 } else {
+                	 hottexts[i].uncheck();
+                 }
+             }
+         }
 	 },
 
 	 finalise: function() {

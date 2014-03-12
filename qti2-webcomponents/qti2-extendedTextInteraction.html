@@ -82,6 +82,17 @@
          }
          this._variable.value = value;
      },
+     
+     setComponentState: function() {
+         if (typeof this._variable.value != 'undefined') {
+        	 var textBoxes = this.$.container.querySelectorAll('textarea');
+        	 for (var i = 0; i < this._variable.value.length; i++) {
+        		 if (typeof textBoxes[i] != 'undefined') {
+        			 textBoxes[i].value = this._variable.value[i];
+        		 }
+        	 }
+         }
+     },
 
 	 finalise: function() {
 		 // check the minStrings

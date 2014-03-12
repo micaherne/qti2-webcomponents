@@ -39,6 +39,14 @@
          this._choiceInteraction.valueChanged(this);
      },
      
+     check: function() {
+    	 this.$.checkbox.checked = true;
+     },
+     
+     uncheck: function() {
+    	 this.$.checkbox.checked = false;
+     },
+     
      isChecked: function() {
          return this.$.checkbox.checked;
      },

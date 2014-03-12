@@ -19,6 +19,8 @@ validate: checks that the value is allowed under the interaction's constraints. 
     was invalid.
 updateResponseVariable: updates the actual response variable (bound by the controller) from the
     current state of the interaction
+setComponentState: once the variable has been bound, sets the state of the component to correspond
+    with the variable value
 finalise: called when the user "finalises" their response (i.e. moves on to the next item).
     This is useful for further validation that is not appropriate to do "live", such as
     minChoices in the hottextInteraction
@@ -39,8 +41,10 @@ If these aren't implemented, the controller looks for a responseIdentifier, outc
 templateIdentifier attribute on the component and simply sets the _variable property
 of the component to the variable. (Obviously, this breaks encapsulation too, so we might
 want to insist on bindVariable()). [Update: just realised that we need to either require this
-function or raise a "qti2-variablebound" event on the interaction otherwise we won't be able 
-to set the default value]
+function or raise some kind of "qti2-variablebound" event that the interaction can listen to
+otherwise we won't be able to set the default value. Updated update: I've copied the default value
+to the value in the controller's ready function, so all we need for this is to call setComponentState
+if it exists, after binding the variable.]
     
 Random info
 -----------

@@ -21,7 +21,7 @@
 	 orientation: null,
 
 	 ready: function() {
-		
+		 
 	 },
 	 
 	 // Called by simpleChoice when (un)checked
@@ -51,6 +51,19 @@
              }
          }
          this._variable.value = value;
+     },
+     
+     setComponentState: function() {
+    	 if (typeof this._variable.value != 'undefined') {
+    		 var simpleChoices = this.querySelectorAll('qti2-simpleChoice');
+    		 for(var i = 0; i < simpleChoices.length; i++) {
+    			 if (this._variable.value.indexOf(simpleChoices[i].identifier) > -1 ) {
+    				 simpleChoices[i].check();
+    			 } else {
+    				 simpleChoices[i].uncheck();
+    			 }
+    		 }
+    	 }
      },
 
 	 finalise: function() {

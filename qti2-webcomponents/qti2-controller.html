@@ -12,6 +12,15 @@
 
 		ready : function() {
 			this._variable = window[this.sessionVariableName]; // TODO: this sucks
+			// Set up values if the defaultValue is present and value isn't set
+			for (var variableName in this._variable.response) {
+				if (typeof this._variable.response[variableName] == 'object' 
+						&& typeof this._variable.response[variableName].value == 'undefined'
+						&& typeof this._variable.response[variableName].defaultValue != 'undefined') {
+					this._variable.response[variableName].value = this._variable.response[variableName].defaultValue; 
+	             }
+			}
+			
 			document.addEventListener('polymer-ready', this.bindVariables.bind(this));
 		},
 		
@@ -47,6 +56,11 @@
 							return;
 						}
 						component._variable = this._variable[variableType][variableName];
+						
+						// Update the component state to reflect the value / type of the variable
+						if (typeof component.setComponentState == 'function') {
+							component.setComponentState();
+						}
 					}
 				}.bind(this));
 			}

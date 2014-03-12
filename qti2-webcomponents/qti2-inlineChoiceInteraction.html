@@ -40,7 +40,7 @@
 			  this.$.container.appendChild(optionElements[i]);
 		}
 		
-		this.$.container.addEventListener('change', this.valueChanged.bind(this));
+		//this.$.container.addEventListener('change', this.valueChanged.bind(this));
 	 },
 	 
 	 valueChanged: function(e) {
@@ -52,6 +52,18 @@
 		  // TODO: What do we do if the user selects the blank option?
 		  var selectedOption = this.$.container.querySelector('option:checked');
 		  this._variable.value = [selectedOption.value];
+	 },
+	 
+	 setComponentState: function() {
+		 if (typeof this._variable.value != 'undefined') {
+			 if (this._variable.value.length > 0) {
+				 // This may not work in older versions of IE, but they probably won't
+				 // run this stuff at all anyway!
+			     this.$.container.value = [this._variable.value[0]];
+		     } else {
+		    	 this.$.container.value = null;
+		     }
+		 }
 	 },
 
 	 finalise: function() {
