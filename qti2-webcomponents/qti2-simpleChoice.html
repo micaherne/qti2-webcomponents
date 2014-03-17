@@ -17,7 +17,7 @@
 
 	 ready: function() {
 		 this._choiceInteraction = this.findContainingInteraction('qti2-choiceInteraction');
-		 this.$.checkbox.addEventListener('change', this._choiceInteraction.valueChanged.bind(this._choiceInteraction));
+		 this.$.checkbox.addEventListener('change', this.valueChanged.bind(this));
 		 
 		 // TODO: The showHide needs to work with the actual QTI variable
 		 if (this.showHide == 'show') {
@@ -36,7 +36,7 @@
 	 },
 	 
 	 valueChanged: function(e) {
-         this._choiceInteraction.valueChanged(this);
+         this._choiceInteraction.valueChanged(e);
      },
      
      check: function() {
